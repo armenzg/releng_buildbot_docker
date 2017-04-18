@@ -1,8 +1,9 @@
 This docker image is meant to be used to generate an allthethings.json file from Mozilla's
 Release Engineering Buildbot set up. Visit https://wiki.mozilla.org/ReleaseEngineering/How_To/allthethings.json to
-know more about the file and how to generate it.
+know more about the file.
 
-== Generate allthethings.json ==
+Generate allthethings.json
+--------------------------
 
 If you just want to generate allthethings.json locally run the following:
 
@@ -15,11 +16,13 @@ If you just want to generate allthethings.json locally run the following:
    # On another tab (once the script is done)
    docker cp allthethings:/root/.mozilla/releng/repos/buildbot-configs/allthethings.json .
 
-== Hack allthethings.json ==
+Hack allthethings.json
+----------------------
 
 If you want to modify how allthethings.json is generated you can do so like this:
 
 .. code-block:: bash
+
    # Generate the image like this
    docker build -t releng_buildbot_docker .
    # Start a container and connect to it
@@ -35,4 +38,4 @@ If you want to modify how allthethings.json is generated you can do so like this
    apt-get install -y vim
    # Make changes to the repositories you want and run the script
    ~/.mozilla/releng/repos/braindump/buildbot-related/dump_allthethings.sh
-   # You will find the newly generated file under ~/.mozilla/releng/repos/buildbot-configs/allthethings.json
+   # You will find the newly generated file under /root/.mozilla/releng/repos/buildbot-configs/allthethings.json
