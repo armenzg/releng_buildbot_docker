@@ -24,11 +24,19 @@ If you want to modify how allthethings.json is generated you can do so like this
 .. code-block:: bash
 
    # Generate the image like this
+   cd image
    docker build -t releng_buildbot_docker .
    # Start a container and connect to it
    docker run --name allthethings --rm -i -t releng_buildbot_docker bash
    # Running this will check out all related repositories and set up the virtualenv
    /braindump/community/generate_allthethings_json.sh
+   #
+   # WARNING: There's a known bug where generate_allthethings_json.sh can only work when
+   #          there's no virtualenv already set up. The script will fail and move the venv
+   #          out of the way, thus, working on a following run. Below you will read that you
+   #          can call the internal script (dump_allthethings.sh) we call and that one
+   #          does not hit the issue.
+   #
    # All the repositories involved are checked out under ~/.mozilla/releng/repos
    # Get to the configs repository
    cd ~/.mozilla/releng/repos/buildbot-configs
